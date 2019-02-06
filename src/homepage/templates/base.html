@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Traveler - Index 5</title>
+    <title>Howdy Highlands</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -31,8 +31,14 @@
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=ABeeZee|Spicy+Rice" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Reem+Kufi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
     <!-- /GOOGLE FONTS -->
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -40,12 +46,18 @@
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+
+
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript">
     </script> <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
 
 <style type="text/css">
-
+.foo2 {
+  width: 200px;
+  height: 200px;
+  overflow-y: hidden;
+}
 .col-center {
 	margin;
 	float: none !important;
@@ -135,7 +147,61 @@
 .carousel-indicators li.active {
 	background: #555;
 }
+.tag {
+	display: inline-block;
 
+  width: auto;
+	height: 38px;
+
+	background-color: #ff5252;
+	-webkit-border-radius: 3px 4px 4px 3px;
+	-moz-border-radius: 3px 4px 4px 3px;
+	border-radius: 3px 14px 14px 3px;
+  margin-right: -10px;
+	border-left: 1px solid #979797;
+
+	/* This makes room for the triangle */
+	margin-left: 19px;
+	position: relative;
+	color: white;
+	font-weight: 300;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 22px;
+	line-height: 38px;
+
+	padding: 0 10px 0 10px;
+}
+
+/* Makes the triangle */
+.tag:before {
+	content: "";
+	position: absolute;
+	display: block;
+	left: -19px;
+	width: 0;
+	height: 0;
+	border-top: 19px solid transparent;
+	border-bottom: 19px solid transparent;
+	border-right: 19px solid #ff5252;
+}
+
+/* Makes the circle */
+.tag:after {
+	content: "";
+	background-color: white;
+	border-radius: 50%;
+	width: 4px;
+	height: 4px;
+	display: block;
+	position: absolute;
+	left: -9px;
+	top: 17px;
+}
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 0px;
+}
 * {
   box-sizing: border-box;
 }
@@ -209,16 +275,16 @@
     background-repeat: repeat-y;
 
   /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-gradient(linear, left top, right top, from(#ed8323), to(#345c70));
+    background: -webkit-gradient(linear, left top, right top, from(#10a4e8), to(#08678b));
 
   /* Safari 5.1, Chrome 10+ */
-    background: -webkit-linear-gradient(left, #ed8323, #345c70);
+    background: -webkit-linear-gradient(left, #10a4e8, #08678b);
 
   /* Firefox 3.6+ */
-    background: -moz-linear-gradient(left, #ed8323, #345c70);
+    background: -moz-linear-gradient(left, #10a4e8, #08678b);
 
   /* IE 10 */
-    background: -ms-linear-gradient(left, #ed8323, #345c70);
+    background: -ms-linear-gradient(left, #10a4e8, #08678b);
 
   /* Opera 11.10+ */
     background: -o-linear-gradient(left, #ed8323, #345c70);
@@ -237,7 +303,7 @@
 	float: right;
 }
 .accordion {
-    background-color: #345c70;
+    background-color: #6481a8;
     margin: 2px 2px 2px 2px;
     color: white;
     cursor: pointer;
@@ -305,7 +371,8 @@
   width: auto;
   padding: 16px;
   margin-top: -50px;
-  color: orange;
+  color: #11b8e3;
+  background-color: rgba(0, 0, 0, 0.8);
   font-weight: bold;
   font-size: 20px;
   border-radius: 0 3px 3px 0;
@@ -376,16 +443,18 @@
 .demo2:hover {
   opacity: 1;
 }
+
+
 </style>
 </head>
 <body>
-  <div class="container-fluid">
+
     {% include 'navbar.html' %}
 
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src= "{% static 'js/ajax.js' %}"></script>
     {% block body %}
     {% endblock %}
-</div>
+
 </body>
 </html>

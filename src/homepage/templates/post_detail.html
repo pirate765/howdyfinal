@@ -1,14 +1,13 @@
 {% extends 'base2.html' %}
 {% load staticfiles %}
 {% block body %}
-<div class="gap">
-<div class="container">
+<div class="container" style="background-color: white;>
 
     <div id="popup-gallery">
 
         <div class="row">
-          <div class="col-md-10 col-md-offset-1"  style="background: white;">
-            <br>
+          <div class="col-md-8 col-xs-12" ">
+            <br><br>
             <h3 style="font-family: 'Teko', sans-serif; text-align: center;">{{article.title}}</h3>
             {% for single_post in post_list %}
 
@@ -29,7 +28,7 @@
 
                         <h4 class="thumb-title" style="font-family: 'Teko', sans-serif; text-align: center;"><a class="text-darken" href="#">{{single_post.title}}</a></h4>
 
-                        <p class="thumb-desc">{{single_post.description | safe}}</p>
+                        <p class="thumb-desc" style="font-family: 'Roboto', sans-serif; font-size: 16px;">{{single_post.description | safe}}</p>
 
                     </div>
                   </div>
@@ -39,83 +38,58 @@
             </div>
 
             {% endfor %}
-<div class="gap"></div>
-</div>
 
+          </div>
+
+          <div class="col-md-4 col-xs-12">
+            <br><br>
+              <aside class="sidebar-right">
+                <div class="sidebar-widget">
+                    <h4>Facebook</h4>
+                    <div class="fb-like-box" data-href="https://www.facebook.com/HowdyHighlands" data-colorscheme="light" data-show-faces="1" data-header="1" data-show-border="1" data-width="320"></div>
+                </div>
+
+                  <div class="sidebar-widget">
+                      <div class="Form">
+                          <input class="form-control" placeholder="Search..." type="text" />
+                      </div>
+                  </div>
+                  <div class="sidebar-widget">
+                      <h4>Categories</h4>
+                      <ul class="nav nav-pills" style="margin: 5px auto;">
+                        {% for singletag in article.tag.all %}
+                        <li class="active"><a href="{% url 'articletaglist' pk=singletag.id %}" style="margin: 5px 2px; padding: 2px 10px; border: 1px solid #2066c4; border-radius: 20px; background-color: white; color:#2066c4; font-size: 15px;">#{{singletag.title}}</a></li>
+                        {% endfor %}
+                      </ul>
+                  </div>
+                  <div class="sidebar-widget">
+                      <h4>Popular Posts</h4>
+                      <ul class="thumb-list">
+                        {% for postarticle in popular_article %}
+                          <li>
+                              <a href="{% url 'postdetail' postarticle.id %}">
+                                  <img src="{{postarticle.logo}}" alt="Image Alternative text" title="Viva Las Vegas" />
+                              </a>
+                              <div class="thumb-list-item-caption">
+
+                                  <h5 class="thumb-list-item-title" style="font-size: 16px;"><a href="{% url 'postdetail' postarticle.id %}">{{postarticle.title}}</a></h5>
+                                  <p class="thumb-list-item-meta" style="font-size: 12px; color: black;"> <i class="fa fa-clock-o"></i><span style="margin-left: 4px;"> {{postarticle.date_published}}</span></p>
+                                  <p class="thumb-list-item-desciption">{{postarticle.head_description|truncatewords:10|safe}}</p>
+                              </div>
+                          </li>
+                          {% endfor %}
+                      </ul>
+                  </div>
+
+              </aside>
+          </div>
+
+          </div>
         </div>
     </div>
 </div>
-
-
-
-<div class="gap"></div>
-<footer id="main-footer">
-    <div class="container">
-        <div class="row row-wrap">
-            <div class="col-md-3">
-                <a class="logo" href="index.html">
-                    <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
-                </a>
-                <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
-                <ul class="list list-horizontal list-space">
-                    <li>
-                        <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-md-3">
-                <h4>Newsletter</h4>
-                <form>
-                    <label>Enter your E-mail Address</label>
-                    <input type="text" class="form-control">
-                    <p class="mt5"><small>*We Never Send Spam</small>
-                    </p>
-                    <input type="submit" class="btn btn-primary" value="Subscribe">
-                </form>
-            </div>
-            <div class="col-md-2">
-                <ul class="list list-footer">
-                    <li><a href="#">About US</a>
-                    </li>
-                    <li><a href="#">Press Centre</a>
-                    </li>
-                    <li><a href="#">Best Price Guarantee</a>
-                    </li>
-                    <li><a href="#">Travel News</a>
-                    </li>
-                    <li><a href="#">Jobs</a>
-                    </li>
-                    <li><a href="#">Privacy Policy</a>
-                    </li>
-                    <li><a href="#">Terms of Use</a>
-                    </li>
-                    <li><a href="#">Feedback</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h4>Have Questions?</h4>
-                <h4 class="text-color">+1-202-555-0173</h4>
-                <h4><a href="#" class="text-color">support@traveler.com</a></h4>
-                <p>24/7 Dedicated Customer Support</p>
-            </div>
-
-        </div>
-    </div>
-</footer>
+</div>
+{% include 'footer.html' %}
 
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -137,5 +111,4 @@
 <script src="{% static 'js/countdown.js' %}"></script>
 <script src="{% static 'js/gridrotator.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
-</div>
 {% endblock %}

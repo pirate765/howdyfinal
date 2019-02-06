@@ -102,7 +102,7 @@
         overflowy: true,
         cursordragspeed: 0.3,
         rtlmode: "auto",
-        cursordragontouch: false,
+        cursordragontouch: true,
         oneaxismousemode: "auto",
         scriptpath: getScriptPath()
     };
@@ -782,15 +782,15 @@
                 if (self.ispage) cont = (self.haswrapper) ? self.win : self.doc;
 
                 if (!cap.isie9mobile) self.css(cont, {
-                    'overflow-y': 'auto'
+                    'overflow-y': 'hidden'
                 });
 
                 if (self.ispage && cap.isie7) {
                     if (self.doc[0].nodeName == 'BODY') self.css($("html"), {
-                        'overflow-y': 'auto'
+                        'overflow-y': 'hidden'
                     }); //IE7 double scrollbar issue
                     else if (self.doc[0].nodeName == 'HTML') self.css($("body"), {
-                        'overflow-y': 'auto'
+                        'overflow-y': 'hidden'
                     }); //IE7 double scrollbar issue
                 }
 
@@ -877,7 +877,7 @@
                 if (self.opt.horizrailenabled) {
 
                     self.css(cont, {
-                        'overflow-x': 'auto'
+                        'overflow-x': 'hidden'
                     });
 
                     var cursor = $(document.createElement('div'));
@@ -1989,11 +1989,11 @@
                     self.lazyResize(30);
 
                     if (cap.isie7) self.css($(self.iframe.html), {
-                        'overflow-y': 'auto'
+                        'overflow-y': 'hidden'
                     });
                     //self.css($(doc.body),{'overflow-y':'hidden'});
                     self.css($(self.iframe.body), {
-                        'overflow-y': 'auto'
+                        'overflow-y': 'hidden'
                     });
 
                     if (cap.isios && self.haswrapper) {

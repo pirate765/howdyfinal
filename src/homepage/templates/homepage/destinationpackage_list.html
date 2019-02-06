@@ -10,17 +10,27 @@
               <div class="col-md-12">
                 {% if messages %}
 
-          <div class="alert alert-success alert-dismissible">
+              <div class="alert alert-success alert-dismissible">
                 <ul class="messages">
                     {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                     {% endfor %}
                 </ul>
               </div>
-                <div class="gap gap-small"></div>
+
                 {% endif %}
 
+                <div class="gap gap-small"></div>
+                  <ul class="breadcrumb">
+                      <li><a href="index.html">Home</a>
+                      </li>
+                      <li><a href="#">Destinations</a>
+                      </li>
+                      <li class="active"><a href="#"> {{query | title}}</a>
+                      </li>
 
+                  </ul>
+                  <br>
           </div>
           <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
                           {% csrf_token %}
@@ -28,6 +38,7 @@
                           <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
 
                               <label for="searchdestination" style="font-size: 20px;">Type Destination and explore.</label>
+
                               <input  type="text" id="searchdestination" name = "searchdestination" class="form-control" value = "{{request.GET.searchdestination}}"  placeholder="Type in Destination"  style="background-color:#ffffff;" required/>
                               <ul id = "search-results">
                               </ul>
@@ -44,88 +55,206 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <div class="nav-drop booking-sort">
-                        <h5 class="booking-sort-title"><a href="#">Sort: Aviability<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
-                        <ul class="nav-drop-menu">
-                            <li><a href="#">Price (low to high)</a>
-                            </li>
-                            <li><a href="#">Price (hight to low)</a>
-                            </li>
-                            <li><a href="#">Ranking</a>
-                            </li>
-                            <li><a href="#">Distance</a>
-                            </li>
-                            <li><a href="#">Number of Reviews</a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <h4 class="booking-title" style="margin-bottom: 3px;">{{ count }} package(s) found for your destination</h4>
                     <ul class="booking-list">
                       {% for package in results %}
                         <li>
-                            <div class="card" style="padding: 4px; border: 1px solid #e6e5e5;">
+                            <div class="card" style="padding: 4px; border: 3px solid #e6e5e5;">
 
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4 col-xs-12">
                                         <div class="booking-item-img-wrap">
-                                            <img src={{package.logo}} alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
+                                            <img src={{package.logo.url}} alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
                                             <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+
+                                  <div class="col-md-5 col-xs-12">
                                         <br>
-                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; margin-top: 5px;">{{package.title}}  <b>({{package.duration}} Days/Nights)</b></h5>
-                                        <p><span class ="booking-item-feature-title" style= "font-family: 'Open Sans', sans-serif; color: #000000d6;">{{package.head_description}}</span></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+                                        <div class="row">
+                                          <div class="col-xs-12">
+
+                                        <h4 class="booking-item-title" style="margin-top: 0px; color: #1a0dab">{{package.title}} </h4>
+                                          <h5 class="booking-item-title"> <b>( {{package.duration}}</b> Days/ <b>{{package.duration_nights}}</b>Nights )</h5>
+                                      </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-xs-12">
+
+
+                                      <strong>Inclusions:</strong>
+                                      <ul class="booking-item-features booking-item-features-rentals booking-item-features-sign" style="margin-bottom: 5px;">
+                                        {% for inclusion in package.inclusions.all %}
+                                        <li rel="tooltip" data-placement="top" title="{{inclusion.title}}"><img src="{{inclusion.icon.url}}" style="max-width: 50px; max-height: 50px;">
+                                        </li>
+                                        {% endfor %}
+
+                                      </ul>
+
                                     </div>
-                                    <div class="col-md-3">
+                                    </div>
+                                        <span class="booking-item-feature-title" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #000000d6; font-size: 15px;">{{package.head_description|safe|truncatewords:35 }}</span>
+                                  </div>
+
+                                    <div class="col-md-3 col-xs-6">
+                                      <div class="row">
+                                        <br>
+                                        <strong style="font-size: 18px;">Highlights:</strong>
+                                        <ul class="nav nav-pills" style="margin: 5px auto;">
+                                          {% for highlight in package.highlights.all %}
+                                          <li class="active"><a href="#" style="margin: 5px 2px; padding: 2px 10px; border: 1px solid #6481a8; border-radius: 20px; background-color: white; color:#6481a8; font-size: 15px;">{{highlight.title}}</a></li>
+                                          {% endfor %}
+
+                                        </ul>
+
+
+                                      </div>
+
+
+                                    <div class="row">
                                       <br>
-                                      <span class="booking-item-price-from" style="margin-top:10px;">from</span><span class="booking-item-price">Rs.{{package.price_for_one}}</span>
-                                    <a href="{% url 'destinationdetails' package.id %}"> Hurry  <span class="btn btn-primary">Book Now</span></a>
+                                      <span class="booking-item-price-from" style="margin-top:0px 5px;">from</span><span class="booking-item-price">₹ {{package.price_for_one}}</span> per person
+                                    </div>
+                                    <div class="row">
+                                    <a href="{% url 'destinationdetails' package.id %}">  <span class="btn btn-primary" style="margin-bottom:5px;">Book Now</span></a>
+                                    <span class="btn btn-primary" style="background-color: #503e77c9; border-color: #503e77c9;" data-toggle="modal" data-target="#myModal2{{package.id}}">Send Enquiry</span></a>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        <div class="modal fade" id="myModal2{{package.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header" style="padding: 0px 0px;">
+                                <button type="button" class="close" data-dismiss="modal" style="margin: 2px 8px; font-size: 25px; color: white;"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <div style="background-color:#4675d4;"><br>
+                                  <h4 class="modal-title" id="myModalLabel" style="text-align: center; margin: 5px 5px; color: white;">Enquire for {{package.title|title}}
+                                  </h4><br>
+                                </div>
+                              </div>
+                              <div class="modal-body">
+                                <h4>Just fill in the following details and we'll get back to you.</h4>
+                                <form method= "POST" action="{% url 'hotsellingquery' id=package.id %}">
+                                  {% csrf_token %}
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                        <label>Full Name</label>
+                                        <input class="form-control" name="user_hotsell" placeholder="e.g. John Doe" type="text" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                        <label>Email</label>
+                                        <input class="form-control" name="email_hotsell" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                        <label>Phone Number</label>
+                                        <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text"/>
+                                    </div>
+
+
+                                      <div class="input-daterange" data-date-format="MM d, D">
+                                          <div class="row">
+                                              <div class="col-xs-6">
+
+                                                  <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                      <label>Check In</label>
+                                                      <input class="form-control" name="start" type="text" />
+                                                  </div>
+                                              </div>
+
+                                              <div class="col-xs-6">
+                                                  <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                      <label>Check Out</label>
+                                                      <input class="form-control" name="end" type="text" />
+                                                  </div>
+                                            </div>
+
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-xs-6">
+                                            <div class="form-group form-group-icon-left"><i class="fa fa-users input-icon input-icon-show"></i>
+                                                <label>Number of People</label>
+                                                <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text"/>
+                                            </div>
+                                          </div>
+                                          <div class="col-xs-6">
+                                            <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-show"></i>
+                                                <label>Your Starting City:</label>
+                                                <input class="form-control" name="starting_point" placeholder="e.g. New Delhi" type="text"/>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                        <label>Your Query</label>
+
+                                        <textarea class="form-control" name ="query_hotsell"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                        </textarea>
+                                    </div>
+                                    <input class="btn btn-primary" type="submit" value="Submit Query" style="width: 100%; padding: 20px; background-color: #009688;"/>
+                                </form>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         {% endfor %}
+
                       </ul>
+
               <div class="row">
 
                 {% if activity_related %}
+                <div class="col-xs-12">
                   <ul class="booking-list">
-                    <h3>Things To Do near {{query}}</h3>
+                    <h3> Things To Do near {{query | title}}</h3>
 
                       {% for items in activity_related %}
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <li>
-                            <div class="card" style="padding: 4px;">
+                            <div class="card">
 
                                 <div class="row">
 
                                     <div class="col-md-12">
                                         <div class="booking-item-img-wrap">
-                                            <img src="{{items.logo}}" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" style="max-height: 220px;"/>
+                                            <img src="{{items.logo.url}}" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" style="max-height: 220px;"/>
                                             <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
                                         </div>
                                     </div>
                                   </div>
 
-                                <div class="row" style="margin-top: 5px;">
-                                    <div class="col-md-9">
+                                <div class="row" style="margin-top: 5px; padding: 5px;">
+                                    <div class="col-md-12">
 
-                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; ">{{items.title}}  <b>({{items.duration}} Days)</b></h5>
+                                        <h4 class="booking-item-title">{{items.title}}<small> - from </small><span style="font-size: 15px;"> Rs. {{items.price_per_person}}</span></h4>
+                                          <div class="booking-item-rating">Difficulty :
+                                              <ul class="icon-group booking-item-rating-stars">
+                                                {% for i in "x"|rjust:items.level_of_difficulty_on_5 %}
+                                                  <li> <i class="fa fa-star"></i>
+                                                  </li>
+                                                {% endfor %}
 
+                                                  <li><i class="fa fa-star-o"></i>
+                                                  </li>
 
+                                              </ul><span class="booking-item-rating-number"><b >{{items.level_of_difficulty_on_5}}</b> of 5</span>
+                                          </div>
+                                          <span style="float: right;">
+                                          <a href="{% url 'activitysinglepackage' pk1=items.id%}">  <span class="btn btn-primary">Book Now</span></a>
+                                        </span>
                                     </div>
-                                    <div class="col-md-3">
-                                      <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif;">Rs.{{items.price_per_person}}</h5>
-                                    </div>
+
                                 </div>
                                 <div class="row" style="margin-top: 3px;">
                                   <div class="col-sm-8">
-                                    <p class="booking-item-address"></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+
                                   </div>
 
                                     <div class="col-md-4">
-                                      <a href="">  <span class="btn btn-primary">Book Now</span></a>
+
                                     </div>
                                 </div>
                              </div>
@@ -133,14 +262,17 @@
                         </div>
                       {% endfor %}
                     </ul>
+                  </div>
                     {% endif %}
                   </div>
                   {% if article_destination %}
                   <ul class="booking-list">
-                    <h3>Articles related to {{query}}</h3>
+
+
 
                       {% for items in article_destination %}
                       <div class="col-md-4">
+                        <h4>Articles related to {{query|title}}</h4>
                         <li>
                             <div class="card" style="padding: 4px;">
 
@@ -157,7 +289,7 @@
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-9">
 
-                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; ">{{items.title}}  <b>({{items.duration}} Days)</b></h5>
+                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif;">{{items.title}}  <b>({{items.duration}} Days)</b></h5>
 
 
                                     </div>
@@ -187,13 +319,12 @@
         </div>
 
 
-
         <footer id="main-footer">
             <div class="container">
                 <div class="row row-wrap">
                     <div class="col-md-3">
                         <a class="logo" href="index.html">
-                            <img src="img/logo-invert.png" alt="Image Alternative text" title="Image Title" />
+                            <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
                         </a>
                         <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
                         <ul class="list list-horizontal list-space">

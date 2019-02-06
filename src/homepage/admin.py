@@ -3,15 +3,15 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from homepage.models import Destination, Itenary, Adventure, Destinationpackage, UpcomingTrip, Destinationimage, Adventurepackage, Rental, Gallery, Article, Post, Addon, Inclusion, ThingsToDo, Month
-from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary
+from homepage.models import Destination, Itenary, Adventure, Destinationpackage, UpcomingTrip, Destinationimage, Adventurepackage, Rental, Gallery, Article, Post, Addon, Inclusion, ThingsToDo, Month, Articletag, Video, UpcomingtripVideo
+from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary, Destinationpackagehighlights, Requiredgear, GroupPackageReview
 
 # Register your models here.
 class DestinationImageInline(admin.TabularInline):
     model = Destinationimage
 
-class AdventureImageInline(admin.TabularInline):
-    model = Adventurepackage
+class RequiredgearInline(admin.TabularInline):
+    model = Requiredgear
 
 class PostInline(admin.TabularInline):
     model = Post
@@ -22,6 +22,10 @@ class AddonInline(admin.TabularInline):
 class GroupPackageiteneraryInline(admin.TabularInline):
     model = GroupPackageitenerary
 
+class GroupPackageReviewInline(admin.TabularInline):
+    model = GroupPackageReview
+
+
 class UpcomingTripItineraryInline(admin.TabularInline):
     model = UpcomingTripItinerary
 
@@ -31,6 +35,9 @@ class StayAddonInline(admin.TabularInline):
 class StayimageInline(admin.TabularInline):
     model = Stayimage
 
+class DestinationpackagehighlightsInline(admin.TabularInline):
+    model = Destinationpackagehighlights
+
 class MonthAdmin(admin.ModelAdmin):
     class Meta:
         model = Month
@@ -39,6 +46,16 @@ admin.site.register(Month, MonthAdmin)
 class UpcomingTripImageInline(admin.TabularInline):
     model = UpcomingTripImage
 
+class VideoInline(admin.TabularInline):
+    model = Video
+
+class UpcomingtripVideoInline(admin.TabularInline):
+    model = UpcomingtripVideo
+
+class ArticletagAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Articletag
+admin.site.register(Articletag, ArticletagAdmin)
 
 class HowdystaysAdmin(admin.ModelAdmin):
     inlines = [StayAddonInline, StayimageInline]
@@ -78,13 +95,13 @@ class ThingsToDoAdmin(admin.ModelAdmin):
 admin.site.register(ThingsToDo, ThingsToDoAdmin)
 
 class DestinationpackageAdmin(admin.ModelAdmin):
-    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,]
+    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,  DestinationpackagehighlightsInline, GroupPackageReviewInline, VideoInline]
     class Meta:
         model = Destinationpackage
 admin.site.register(Destinationpackage, DestinationpackageAdmin)
 
 class UpcomingTripAdmin(admin.ModelAdmin):
-    inlines = [UpcomingTripImageInline, UpcomingTripItineraryInline]
+    inlines = [UpcomingTripImageInline, UpcomingTripItineraryInline, UpcomingtripVideoInline]
     class Meta:
 		model = UpcomingTrip
 admin.site.register(UpcomingTrip, UpcomingTripAdmin)
@@ -100,7 +117,7 @@ class AddonAdmin(admin.ModelAdmin):
 admin.site.register(Addon, AddonAdmin)
 
 class AdventurepackageAdmin(admin.ModelAdmin):
-    inline = [AdventureImageInline,]
+    inlines = [RequiredgearInline,]
     class Meta:
         model = Adventurepackage
 admin.site.register(Adventurepackage, AdventurepackageAdmin)
