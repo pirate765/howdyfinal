@@ -274,7 +274,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
-                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore All</h5>
               </a>
