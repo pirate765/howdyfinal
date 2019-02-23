@@ -45,7 +45,8 @@
 
                                         <h4 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;">{{activity.group_prices}}</span></strong>
                                         </h4>
-                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
+                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b>
+                                        <span class="btn btn-md"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden; color: white;">Send Enquiry<i class="fa fa-send-o"></i></span></p>
 
                                           <div class="booking-item-rating">Difficulty :
                                               <ul class="icon-group booking-item-rating-stars">
@@ -61,8 +62,8 @@
                                           </div>
                                         <div class="row">
                                         <div class="booking-item-dates-change" style="padding: 10px; margin: 0px 5px; ">
-                                          <div class="row">
-                                            <div class="col-md-7 col-sm-7" style="margin: 0px;">
+                                        <div class="row">
+                                          <div class="col-md-7 col-xs-7" style="margin: 0px;">
                                             <div class="input-daterange" data-date-format="MM d, D" style="margin: 0px 0px;">
 
                                             <div class="form-group form-group-icon-left" style="margin: 0px;"><i class="fa fa-calendar input-icon input-icon-hightlight" style="margin: 0px;"></i>
@@ -73,13 +74,10 @@
                                           </div>
 
                                           <br>
-                                          <form action="{% url 'payment' %}" method="POST">
-                                            {% csrf_token %}
-                                            <input type="submit" value="Submit" class="btn btn-primary">
-                                        </form>
+
                                         </div>
 
-                                        <div class="col-md-5 col-sm-5" style="margin: 0px;">
+                                        <div class="col-md-5 col-xs-5" style="margin: 0px;">
 
                                        <p style="font-size: 15px;">No. of Persons: </p>
                                        <button id='button2' value= "-" class="minus-{{forloop.counter}}" />- </button>
@@ -92,41 +90,51 @@
 
                                       </div>
                                     </div>
+                                    <div class="row">
+                                      <div class="col-md-12 col-sm-12">
+                                      <form action="{% url 'payment' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Book Now" class="btn btn-primary">
+                                    </form>
+                                    </div>
+                                  </div>
                                   </div>
                                 </div>
                               </div>
 
                                     <div class="col-md-4 col-xs-12">
                                       <div class="row">
-                                      <ul class="nav nav-tabs">
+                                        <div class="col-md-12 col-xs-12">
+                                        <ul class="nav nav-tabs" style="font-size: 15px; margin-top: 5px;">
 
-                                        <li class="active"><a data-toggle="tab" href="#menu1{{forloop.counter}}">Description</a></li>
-                                        <li><a data-toggle="tab" href="#menu2{{forloop.counter}}">Required</a></li>
-                                        <li><a data-toggle="tab" href="#menu3{{forloop.counter}}">Must Read</a></li>
-                                      </ul>
+                                          <li class="active"><a data-toggle="tab" href="#menu1{{forloop.counter}}">Description</a></li>
+                                          <li><a data-toggle="tab" href="#menu2{{forloop.counter}}">Required</a></li>
+                                          <li><a data-toggle="tab" href="#menu3{{forloop.counter}}">Must Read</a></li>
+                                        </ul>
 
                                       <div class="tab-content" style="padding: 5px 5px;">
 
-                                        <div id="menu1{{forloop.counter}}" class="tab-pane fade in active" style= "font-family: 'Montserrat', sans-serif; color: #000000d6; font-size: 15px; padding: 5px 10px;">
-                                          <h3></h3>
-                                          <p>{{activity.short_description|safe}}</p>
-                                        </div>
-                                        <div id="menu2{{forloop.counter}}" class="tab-pane fade" style=" padding: 5px 10px;">
-                                          <h3></h3>
-                                          <p style="background-color: white;"><ul style="list-style-type:disc">
-                                        {% for i in activity.requiredgear.all %}
+                                            <div id="menu1{{forloop.counter}}" class="tab-pane fade in active" style= "font-family: 'Montserrat', sans-serif; color: #000000d6; font-size: 15px; padding: 5px 10px;">
+                                              <h3></h3>
+                                              <p>{{activity.short_description|safe}}</p>
+                                            </div>
+                                            <div id="menu2{{forloop.counter}}" class="tab-pane fade" style=" padding: 5px 10px;">
+                                              <h3></h3>
+                                              <p style="background-color: white;"><ul style="list-style-type:disc">
+                                            {% for i in activity.requiredgear.all %}
 
-                                          <li>{{i.title|safe}}</li>
+                                              <li>{{i.title|safe}}</li>
 
-                                        {% endfor %}
-                                        </ul>
-                                        </p>
-                                        </div>
-                                        <div id="menu3{{forloop.counter}}" class="tab-pane fade" style= "font-family: 'Montserrat', sans-serif; color: #000000d6; font-size: 15px;  padding: 5px 10px;">
-                                          <h3></h3>
-                                          <p>{{activity.notes_for_activity|safe}}</p>
-                                        </div>
+                                            {% endfor %}
+                                            </ul>
+                                            </p>
+                                            </div>
+                                            <div id="menu3{{forloop.counter}}" class="tab-pane fade" style= "font-family: 'Montserrat', sans-serif; color: #000000d6; font-size: 15px;  padding: 5px 10px;">
+                                              <h3></h3>
+                                              <p>{{activity.notes_for_activity|safe}}</p>
+                                            </div>
                                       </div>
+                                    </div>
                                     </div>
                                   </div>
 
