@@ -16,8 +16,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tusharblogger12@gmail.com'
-EMAIL_HOST_PASSWORD = 'pianothepassion@tushar123456'
+EMAIL_HOST_USER = 'mailerchauhan@gmail.com'
+EMAIL_HOST_PASSWORD = 'Jaimatadi@01'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
@@ -30,7 +30,7 @@ SECRET_KEY = '$6&4(i0p(!#5539g1ql7vjq1g*79=0bi7@@yu^a@on+#hdtc=5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', '68.183.84.179']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
@@ -120,12 +120,8 @@ WSGI_APPLICATION = 'howdyhighlands.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'urban_prod',
-        'USER': 'u_urban',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
