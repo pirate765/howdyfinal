@@ -10956,3 +10956,28 @@ img.mfp-img {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
+
+
+.footer-only-mobile{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background:#050505b5;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.desktop-only-destination-headdesc{
+    display: inline;
+}
+
+
+@media screen and (max-width: 800px){
+  .footer-only-mobile{
+    visibility: visible;
+  }
+  .desktop-only-destination-headdesc{
+    display: none;
+  }
+}
