@@ -461,6 +461,11 @@ $(document).ready(function(){
 
 </head>
 <body style="background-color:#e9ebee;">
+  <div class="footer-only-mobile" style="text-align: center;">
+  <a href="#enquiry_form" class="btn btn-primary btn-md" style="margin: 10px auto; margin-left: 10px;">Send Enquiry<i class="fa fa-shopping-cart"></i></a>
+  <a href="#standard_itinerary" class="btn btn-primary btn-md" style="margin: 10px auto; margin-left: 10px; background: #ec5252; border-color: #ec5252;">View Itinerary<i class="fa fa-shopping-cart"></i></a>
+  </div>
+
   {% include 'navbar.html' %}
   <div class="container" style="background-color: white; padding: 2px auto; overflow: hidden;">
     <div class="gap gap-small"></div>
@@ -536,7 +541,7 @@ $(document).ready(function(){
                   </div>
                   </div>
                   <div class="row" style="margin-right: 4px;">
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-12 col-sm-12" id="standard_itinerary">
                   <br>
                     <h3>Standard Itinerary :</h3>
                         {% for i in itinerary_day_detail %}
@@ -578,7 +583,7 @@ $(document).ready(function(){
                           {% csrf_token %}
 
                             <div class="row" >
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="enquiry_form">
                                   <h4 style="font-family: 'Acme', sans-serif;">Quick Add Ons</h4>
                                   <div class="booking-item-price-calc">
                                       <div class="row row-wrap">
