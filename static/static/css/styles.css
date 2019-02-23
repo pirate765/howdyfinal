@@ -10965,7 +10965,7 @@ img.mfp-img {
   right: 0;
   background:#050505b5;
   visibility: hidden;
-  z-index: 1;
+  z-index: 500;
 }
 
 .desktop-only-destination-headdesc{
