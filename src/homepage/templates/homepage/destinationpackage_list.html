@@ -6,10 +6,10 @@
 
         <div class="container" style="background-color: white;">
 
-  <div class="gap gap-small"></div>
+
               <div class="col-md-12">
                 {% if messages %}
-
+              <div class="gap gap-small"></div>
               <div class="alert alert-success alert-dismissible">
                 <ul class="messages">
                     {% for message in messages %}
@@ -20,7 +20,7 @@
 
                 {% endif %}
 
-                <div class="gap gap-small"></div>
+
                   <ul class="breadcrumb">
                       <li><a href="index.html">Home</a>
                       </li>
@@ -32,31 +32,32 @@
                   </ul>
                   <br>
           </div>
-          <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
-                          {% csrf_token %}
-                          <div class="col-md-9">
-                          <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+          <div class="row">
+              <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
+                              {% csrf_token %}
+                              <div class="col-md-9">
+                              <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
 
-                              <label for="searchdestination" style="font-size: 20px;">Type Destination and explore.</label>
+                                  <label for="searchdestination" style="font-size: 20px;">Type Destination and explore.</label>
 
-                              <input  type="text" id="searchdestination" name = "searchdestination" class="form-control" value = "{{request.GET.searchdestination}}"  placeholder="Type in Destination"  style="background-color:#ffffff;" required/>
-                              <ul id = "search-results">
-                              </ul>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <br>
-                          <button class="btn btn-primary btn-lg" type="submit">Go Tripping</button>
-                        </div>
-          </form>
-          <div class="gap gap-small"></div>
+                                  <input  type="text" id="searchdestination" name = "searchdestination" class="form-control" value = "{{request.GET.searchdestination}}"  placeholder="Type in Destination"  style="background-color:#ffffff;" required/>
+                                  <ul id = "search-results">
+                                  </ul>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <br>
+                              <button class="btn btn-primary btn-lg" type="submit">Go Tripping</button>
+                            </div>
+              </form>
+
 
 
             <div class="row">
 
                 <div class="col-md-12">
 
-                    <h4 class="booking-title" style="margin-bottom: 3px;">{{ count }} package(s) found for your destination</h4>
+                    <h4 class="booking-title" style="margin-bottom: 3px;"> {{ count }} package(s) found for your destination</h4>
                     <ul class="booking-list">
                       {% for package in results %}
                         <li>
@@ -75,9 +76,10 @@
                                         <div class="row">
                                           <div class="col-xs-12">
 
-                                        <h4 class="booking-item-title" style="margin-top: 0px; color: #1a0dab">{{package.title}} </h4>
+                                          <h4 class="booking-item-title" style="margin-top: 0px; color: #1a0dab">{{package.title}} - <small>from </small><span style="color: #626262; font-size: 18px;">₹ {{package.price_for_one}}</span><span style="color: #626262; font-size: 14px;">/person</span></h4>
                                           <h5 class="booking-item-title"> <b>( {{package.duration}}</b> Days/ <b>{{package.duration_nights}}</b>Nights )</h5>
-                                      </div>
+
+                                          </div>
                                       </div>
                                       <div class="row">
                                         <div class="col-xs-12">
@@ -94,33 +96,36 @@
 
                                     </div>
                                     </div>
-                                        <span class="booking-item-feature-title" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #000000d6; font-size: 15px;">{{package.head_description|safe|truncatewords:35 }}</span>
+                                        <span class="desktop-only-destination-headdesc" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #000000d6; font-size: 15px;">{{package.head_description|safe|truncatewords:35 }}</span>
                                   </div>
 
-                                    <div class="col-md-3 col-xs-6">
+                                  <div class="col-md-3 col-xs-12">
                                       <div class="row">
+                                        <div class="col-md-12 col-xs-12">
                                         <br>
                                         <strong style="font-size: 18px;">Highlights:</strong>
-                                        <ul class="nav nav-pills" style="margin: 5px auto;">
+                                        <ul class="nav nav-pills">
                                           {% for highlight in package.highlights.all %}
-                                          <li class="active"><a href="#" style="margin: 5px 2px; padding: 2px 10px; border: 1px solid #6481a8; border-radius: 20px; background-color: white; color:#6481a8; font-size: 15px;">{{highlight.title}}</a></li>
+                                          <li><a href="#" style="margin: 5px 2px; padding: 2px 10px; border: 1px solid #6481a8; border-radius: 20px; background-color: white; color:#6481a8; font-size: 13px;">{{highlight.title}}</a></li>
                                           {% endfor %}
 
                                         </ul>
 
-
+                                      </div>
                                       </div>
 
 
+                                      <div class="gap gap-small">
+
                                     <div class="row">
-                                      <br>
-                                      <span class="booking-item-price-from" style="margin-top:0px 5px;">from</span><span class="booking-item-price">₹ {{package.price_for_one}}</span> per person
+                                      <div class="col-md-12 col-xs-12">
+
+                                        <a href="{% url 'destinationdetails' package.id %}">  <span class="btn btn-primary" style="margin-right:10px;">Book Now</span></a>
+                                        <span class="btn btn-primary" style="background-color: #503e77c9; border-color: #503e77c9;" data-toggle="modal" data-target="#myModal2{{package.id}}">Send Enquiry</span></a>
                                     </div>
-                                    <div class="row">
-                                    <a href="{% url 'destinationdetails' package.id %}">  <span class="btn btn-primary" style="margin-bottom:5px;">Book Now</span></a>
-                                    <span class="btn btn-primary" style="background-color: #503e77c9; border-color: #503e77c9;" data-toggle="modal" data-target="#myModal2{{package.id}}">Send Enquiry</span></a>
-                                    </div>
-                                    </div>
+                                  </div>
+                                  </div>
+
                                 </div>
                             </div>
                         </li>
@@ -317,75 +322,9 @@
                 </div>
             <div class="gap"></div>
         </div>
+</div>
 
-
-        <footer id="main-footer">
-            <div class="container">
-                <div class="row row-wrap">
-                    <div class="col-md-3">
-                        <a class="logo" href="index.html">
-                            <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
-                        </a>
-                        <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
-                        <ul class="list list-horizontal list-space">
-                            <li>
-                                <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-3">
-                        <h4>Newsletter</h4>
-                        <form>
-                            <label>Enter your E-mail Address</label>
-                            <input type="text" class="form-control">
-                            <p class="mt5"><small>*We Never Send Spam</small>
-                            </p>
-                            <input type="submit" class="btn btn-primary" value="Subscribe">
-                        </form>
-                    </div>
-                    <div class="col-md-2">
-                        <ul class="list list-footer">
-                            <li><a href="#">About US</a>
-                            </li>
-                            <li><a href="#">Press Centre</a>
-                            </li>
-                            <li><a href="#">Best Price Guarantee</a>
-                            </li>
-                            <li><a href="#">Travel News</a>
-                            </li>
-                            <li><a href="#">Jobs</a>
-                            </li>
-                            <li><a href="#">Privacy Policy</a>
-                            </li>
-                            <li><a href="#">Terms of Use</a>
-                            </li>
-                            <li><a href="#">Feedback</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h4>Have Questions?</h4>
-                        <h4 class="text-color">+1-202-555-0173</h4>
-                        <h4><a href="#" class="text-color">support@traveler.com</a></h4>
-                        <p>24/7 Dedicated Customer Support</p>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
+        {% include 'footer.html' %}
 
         <script src="{% static 'js/jquery.js' %}"></script>
         <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -407,7 +346,7 @@
         <script src="{% static 'js/countdown.js' %}"></script>
         <script src="{% static 'js/gridrotator.js' %}"></script>
         <script src="{% static 'js/custom.js' %}"></script>
-    </div>
+
 
 
 {% endblock %}
