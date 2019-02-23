@@ -162,8 +162,7 @@
             <!-- END TOP AREA  -->
 
             <div class="gap gap-small"></div>
-
-
+      
             <h3 style="text-align: center;">Our Upcoming Group Trips</h3>
             <div class="container">
               <div class="row row-wrap">
@@ -252,7 +251,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a href="{% url 'singleadventure' pk1=activity.id %}" class="hover-img" >
-                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore More</h5>
               </a>
@@ -274,7 +273,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
-                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore All</h5>
               </a>
@@ -296,7 +295,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
-                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;">{{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore More</h5>
               </a>
@@ -563,15 +562,15 @@ for (i = 0; i < acc.length; i++) {
         <li>
             <div class="booking-item booking-item-small">
                 <div class="row">
-                    <div class="col-md-6 col-sm-5">
-                        <img src="{{rental_item.logo}}" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO luxury suite" style="max-height: 130px; width:auto;"/>
+                    <div class="col-md-6 col-xs-6">
+                        <img src="{{rental_item.logo}}" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO luxury suite" style="max-height: 100px; width:auto;"/>
                     </div>
 
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-xs-6" style="text-align: justify;">
                       <p style="font-size:17px;">{{rental_item.title}}</p>
                       <span class="booking-item-price-from">from</span><span class="booking-item-price">₹ {{rental_item.price_per_day}}</span>
                       <div class="gap gap-small"></div>
-                      <a href="#" class="btn btn-primary btn-sm" style="background: #0c9cd2; border-color:#0c9cd2;"><b>Book Now <i class="fa fa-shopping-cart"></i></b></a>
+                      <a href="#" class="btn btn-md" style="background: #6481a8; border-color:#6481a8; color: white;"><b>Book Now <i class="fa fa-shopping-cart"></i></b></a>
                     </div>
                 </div>
             </div>
@@ -779,7 +778,7 @@ function showSlides2(n) {
                           <span class="sr-only" style="color:white; border-color: white;">Previous</span>
                         </a>
                         <a class="right carousel-control" href="#myCarousel" data-slide="next" style="color: white;  border-color: white;">
-                          <span class="glyphicon glyphicon-chevron-right" style="color: white">> </span>
+                          <span class="glyphicon glyphicon-chevron-right" style="color: white; margin-left: -15px;"> > </span>
                           <span class="sr-only">Next</span>
                         </a>
                       </div>
@@ -895,73 +894,7 @@ function showSlides2(n) {
 
 
 
-            <footer id="main-footer" style="background-image:url('https://www.howdyhighlands.in/wp-content/uploads/2018/10/Untitled-3.jpg');background-position: center; padding-top: 100px;  position:relative; background-size: cover;">
-                <div class="container">
-                    <div class="row row-wrap">
-                        <div class="col-md-3">
-                            <a class="logo" href="index.html">
-                                <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
-                            </a>
-                            <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
-                            <ul class="list list-horizontal list-space">
-                                <li>
-                                    <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="col-md-3">
-                            <h4>Newsletter</h4>
-                            <form>
-                                <label>Enter your E-mail Address</label>
-                                <input type="text" class="form-control">
-                                <p class="mt5"><small>*We Never Send Spam</small>
-                                </p>
-                                <input type="submit" class="btn btn-primary" value="Subscribe">
-                            </form>
-                        </div>
-                        <div class="col-md-2">
-                            <ul class="list list-footer">
-                                <li><a href="#">About US</a>
-                                </li>
-                                <li><a href="#">Press Centre</a>
-                                </li>
-                                <li><a href="#">Best Price Guarantee</a>
-                                </li>
-                                <li><a href="#">Travel News</a>
-                                </li>
-                                <li><a href="#">Jobs</a>
-                                </li>
-                                <li><a href="#">Privacy Policy</a>
-                                </li>
-                                <li><a href="#">Terms of Use</a>
-                                </li>
-                                <li><a href="#">Feedback</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Have Questions?</h4>
-                            <h4 class="text-color">+1-202-555-0173</h4>
-                            <h4><a href="#" class="text-color">support@traveler.com</a></h4>
-                            <p>24/7 Dedicated Customer Support</p>
-                        </div>
-
-                    </div>
-
-        </footer>
+            {% include 'footer.html' %}
 
 
         <script src="{% static 'js/jquery.js' %}"></script>
