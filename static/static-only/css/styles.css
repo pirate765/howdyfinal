@@ -2447,7 +2447,7 @@ footer#main-footer .form-control:focus {
   text-decoration: underline;
 }
 header#main-header {
-  border-bottom: 2px solid #ed8323;
+  border-bottom: 2px solid #c3c1c1;
 }
 .main-header-search {
   top: 4px;
@@ -10955,4 +10955,29 @@ img.mfp-img {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
+}
+
+
+.footer-only-mobile{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background:#050505b5;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.desktop-only-destination-headdesc{
+    display: inline;
+}
+
+
+@media screen and (max-width: 800px){
+  .footer-only-mobile{
+    visibility: visible;
+  }
+  .desktop-only-destination-headdesc{
+    display: none;
+  }
 }
